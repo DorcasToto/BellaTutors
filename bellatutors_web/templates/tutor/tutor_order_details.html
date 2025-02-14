@@ -1,0 +1,96 @@
+{% extends "tutor/tutor_base.html" %}
+
+{% block content %}
+<main id="main" class="main">
+  <section class="section dashboard">
+      <div class="col-12">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card-body">
+        <h6 class="text-primary">Summary</h6>
+        <h4 class="text-info">{{ order.title }}</h4>
+        <p class="text-success">{{ order.description }}</p>
+        <p>Order ID: <strong>{{order.id}}</strong></p>
+        <p>Price: <strong>{% if order.tutor_price %} Ksh {{ order.tutor_price }} {% else %} Not set {% endif %}</strong></p>
+        <p>Date Due: <strong>{% if order.due_at %}{% if order.due_at %}{{ order.due_at|date:"m/d/Y g:i A" }}{% else %}Not set{% endif %}{% else %}Not set{% endif %}</strong></p>
+        <p>Booking status <strong>{% if order.tutor %} Booked {% else %} <strong>Not booked</strong> > <a href="{% url 'book_order' order.id %}"><button type="button" class="btn btn-primary">Book Now</button></a> {% endif %}</strong></p>
+        <p>Progress status <strong>{{ order.status }}</strong></p>
+        <p>Client: <strong>{% if order.client %}{{ order.client.first_name }} {{ order.client.last_name }}{% else %} Not set {% endif %}</strong></p>
+        <p>Payment status:
+          {% if not order.paid %}
+          <strong>Pending</strong>
+          {% else %}
+          <strong>Paid</strong>
+          {% endif %}
+        </p>
+        <a href="{% url 'tutor_order_chats' order.id %}"><button type="button" class="btn btn-primary"><i class='fas fa-comments'></i> Chats</button></a> 
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card-body">
+        <h6 class="text-primary">Attached File(s)</h6>
+        {% if attachments %}
+        {% for attachment in attachments %}
+        <div>
+          <h2><i class="fa fa-file" aria-hidden="true"></i> {{attachment.name}}</h2>
+          <a href="{% url 'protected_media_serve' path=attachment.file %}" download="" class="btn btn-outline-success doc"><i class="fa fa-download"
+              aria-hidden="true"></i> Download</a>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>No files attached</p>
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card-body">
+        <h6 class="text-primary">Solution(s)</h6>
+        {% if solutions %}
+          {% for solution in solutions %}
+            <div class="mb-3">
+              <h2><i class="fa fa-file" aria-hidden="true"></i> {{ solution.name }}</h2>
+              <a href="{% url 'protected_media_serve' path=solution.file %}" download="" class="btn btn-outline-success doc">
+                <i class="fa fa-download" aria-hidden="true"></i> Download
+              </a>
+              <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#delete-solution-{{solution.id}}">Delete
+              </button>
+              <div class="modal fade" id="delete-solution-{{solution.id}}">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Delete Solution File of ID: {{solution.id}}</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete this file?</p>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                      <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                      <a href="{% url 'delete_solution' solution.id %}"><button type="submit" class="btn btn-danger">Delete</button></a>
+                    </div>
+                  </div>
+                  <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+              </div>
+            </div>
+          {% endfor %}
+          {% else %}
+          <p>Not yet uploaded</p>
+          {% endif %}
+        <div class="mt-3">
+          <a href="{% url 'tutor_upload_solution' order.id %}">
+            <button type="button" class="btn btn-primary">Add Solution</button>
+          </a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+</section>
+
+</main><!-- End #main -->
+{% endblock %}

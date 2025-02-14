@@ -1,0 +1,48 @@
+{% extends "admin/admin_base.html" %}
+
+{% block content %}
+<main id="main" class="main">
+    {% include 'shared/timeframe.html' %}
+<section class="section dashboard">
+    <div class="col-12">
+        <div class="card-header">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="row ">
+                    <div class="alert text-center alert-{{ message.tags }} alert-dismissible" role="alert" id="messages">
+                        {{ message }}
+                    </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="card recent-sales overflow-auto">
+            <div class="card-body">
+            <h5 class="card-title">Payments</h5>
+            <table class="table table-borderless datatable">
+                <thead>
+                    <tr>
+                    <th>Name</th>
+                    <th>Article/Bellatutors</th>
+                    <th>Amount Paid</th>
+                    <th>Date of Payments</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for payment in payments %}
+                <tr>
+                    <td>{{ payment.client.first_name }} {{ payment.client.last_name }}</td>
+                    <td>{{ payment.order.title }}</td>
+                    <td>{{ payment.amount }}</td>
+                    <td>{{ payment.created_at|date }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+        </table>
+    </div>
+        </div>
+</div>
+</section>
+
+</main><!-- End #main -->
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "accounts/base.html" %}
+{% block content %}
+<section>
+<div class="register" style="margin-top: 140px;">
+    <div class="container-fluid text-center">
+      <h3 class="">Sign up for an account today.</h3>
+      <p class="lead">Select below the type of account you want to create</p>
+      <hr class="my-2">
+      <p class="lead">
+        <a style="width: 100px; height: 70px; background-color: #5fcf80; color: #fff;" class="btn btn-success lg" href="{% url 'register_tutor' %}" role="button" disabled>
+          <span class="spinner-grow spinner-grow-sm"></span>
+          Tutor.....
+        </a>
+        <a style="width: 100px; height: 70px; background-color: #5fcf80; color: #fff;" class="btn btn-success lg" href="{% url 'register_client' %}" role="button" disabled>
+          <span class="spinner-grow spinner-grow-sm"></span>
+          Client.....
+        </a>
+      </p>
+      
+    </div>
+  </div>
+  
+</section>  
+{% endblock %}

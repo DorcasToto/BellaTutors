@@ -1,0 +1,52 @@
+{% extends "profile/profile_base.html" %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="table-responsive text-nowrap">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="row ">
+                <div class="alert text-center alert-{{ message.tags }} alert-dismissible" role="alert" id="messages">
+                    {{ message }}
+                </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <h3 class="text-center">Personal Details</h3>
+        <table class="table table-striped" border="1">
+          <tbody>
+            <tr>
+              <th>Name</th>
+              <td>{{ user.first_name }} {{ user.last_name }}</td>
+            </tr>
+            <tr>
+              <th>Username</th>
+              <td>{{ user.username}}</td>
+            </tr>
+            <tr>
+              <th>Phone</th>
+              <td>{{ user.phone }}</td>
+            </tr>
+            <tr>
+              <th>Email Address</th>
+              <td>{{ user.email }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="text-center">
+          <a href="{% url 'update_profile' %}">
+            <button class="btn btn-success">Update Details</button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+
+
+
+</div>
+{% endblock %}

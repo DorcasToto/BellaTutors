@@ -1,0 +1,71 @@
+{% extends "admin/admin_base.html" %}
+
+{% block content %}
+<main id="main" class="main">
+<section class="section dashboard">
+                <div class="col-12">
+                    <div class="card-header">
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="row ">
+                                <div class="alert text-center alert-{{ message.tags }} alert-dismissible" role="alert" id="messages">
+                                    {{ message }}
+                                </div>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="card recent-sales overflow-auto">
+                        <div class="card-body">
+                        <h5 class="card-title">Users</h5>
+                        <table class="table table-borderless datatable">
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                    <th>View</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for user in users %}
+                                <tr>
+                                    <td>{{ user.first_name }}</td>
+                                    <td>{{ user.last_name }}</td>
+                                    <td>{{ user.username }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td class="text-capitalize">
+                                        {% if user.groups.all %}
+                                          {% for group in user.groups.all %}
+                                            {{ group.name|capfirst }}
+                                            {% if not forloop.last %}, {% endif %}
+                                          {% endfor %}
+                                        {% else %}
+                                          None
+                                        {% endif %}
+                                    </td>
+                                    <td> 
+                                    {% if not user.is_active %}
+                                        <strong>Not Active</strong> > <a href="{% url 'admin_approve_tutor' user.id %}" class="btn btn-success"> Approve</a>
+                                        {% else %}
+                                        <strong>Active</strong>
+                                    {% endif %}
+                                    </td>
+                                    <td><a href="{% url 'view_new_user' user.id %}" class="btn btn-warning">
+                                        View</a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+        
+                        </div>
+        
+                    </div>
+                </div>
+</section>
+
+</main><!-- End #main -->
+{% endblock %}

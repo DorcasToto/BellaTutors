@@ -1,0 +1,13 @@
+New Chat
+
+A new chat message has been sent for the order "{{ order_title }}".
+
+Chat Message:
+{{ chat_message }}
+
+Chat Written By: {{ chat_written_by }}
+
+Thank you for your attention.
+
+Regards,
+Bellatutors

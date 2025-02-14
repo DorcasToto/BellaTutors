@@ -1,0 +1,57 @@
+{% extends "client/client_base.html" %}
+
+{% block content %}
+<main id="main" class="main">
+    {% include 'shared/timeframe.html' %}
+    <section class="section dashboard">
+        <div class="col-12">
+        <div class="card-header">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="row ">
+                <div class="alert text-center alert-{{ message.tags }} alert-dismissible" role="alert" id="messages">
+                    {{ message }}
+                </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div class="card recent-sales overflow-auto">
+        <div class="card-body">
+        <h5 class="card-title">{{title}}</h5>
+        <table class="table table-borderless datatable">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Ordered On</th>
+                    <th>Due On</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td><a href="{% url 'client_order_details' order.id %}">{{ order.title }}</a></td>
+                    <td>{{ order.description }}</td>
+                    <td>{{ order.created_at|date:"m/d/Y g:i A" }}</td>
+                   <td>{% if order.due_at %}{{ order.due_at|date:"m/d/Y g:i A" }}{% else %}Not set{% endif %}</td>
+
+
+
+                    <td>{% if order.price %} $ {{ order.price }} {% else %} Not set {% endif %}</td>
+                    <td>{{ order.status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+        </div>
+</section>
+
+</main><!-- End #main -->
+{% endblock %}

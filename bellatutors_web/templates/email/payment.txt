@@ -1,0 +1,5 @@
+Hello {{user.full_name}}
+
+Your order Ref No: {{order.ref_code}} of Ksh {{order.payment.Amount}} was successful. The goods will be delivered to your shipping address soon.
+Regards,
+Holla Fashion

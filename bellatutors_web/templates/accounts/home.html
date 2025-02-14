@@ -1,0 +1,268 @@
+{% extends "accounts/base.html" %}
+{% load static %}
+{% block content %}
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex justify-content-center align-items-center">
+    <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+      <h1>Welcome to Bellatutors</h1>
+      <h2>Find the perfect tutor for your learning needs.</h2>
+      <a href="{% url 'index' %}" class="btn-get-started">Get Started</a>
+    </div>
+  </section><!-- End Hero -->
+  
+  <main id="main">
+  
+    <!-- ======= About Section ======= -->
+<section id="about" class="about">
+  <div class="container" data-aos="fade-up">
+    <div class="section-title">
+      <h2>About Us</h2>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+        <img src="{% static 'main/assets/img/about2.jpg' %}" class="img-fluid" alt="About Bellatutors">
+      </div>
+      <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+        <h3>Welcome to Bellatutors</h3>
+        <p>Bellatutors is a leading global freelance platform connecting students with highly skilled tutors. Our mission is to make learning accessible, enjoyable, and effective for everyone.</p>
+        <p>Our platform offers a wide range of subjects, including mathematics, science, languages, humanities, and more. Whether you're preparing for exams, seeking homework assistance, or aiming for an in-depth understanding of a particular topic, our tutors are here to guide you every step of the way.</p>
+        <p>We understand that every student is unique, with different learning styles and goals. That's why our tutors provide personalized one-on-one sessions tailored to your specific needs. This individualized approach fosters a supportive and engaging learning environment, where you can ask questions, receive detailed explanations, and gain a deep understanding of the subject matter.</p>
+        <p>Our commitment to quality extends beyond our tutors. We value your feedback and continuously strive to improve our platform, ensuring a seamless and enriching learning experience. We are dedicated to your success, and we measure our achievements by the progress you make.</p>
+        <p>Whether you're a high school student preparing for college entrance exams, a college student seeking academic support, or an adult learner looking to acquire new skills, Bellatutors is here to help you achieve your educational goals. Join us today and embark on a transformative learning journey!</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End About Section -->
+
+
+    <!-- ======= Counts Section ======= -->
+<section id="counts" class="counts section-bg">
+  <div class="container">
+    <div class="row counters">
+      <div class="col-lg-3 col-6 text-center">
+        <span data-purecounter-start="0" data-purecounter-end="1232" data-purecounter-duration="1" class="purecounter"></span>
+        <p>Enrolled Students</p>
+      </div>
+      <div class="col-lg-3 col-6 text-center">
+        <span data-purecounter-start="0" data-purecounter-end="64" data-purecounter-duration="1" class="purecounter"></span>
+        <p>Courses Offered</p>
+      </div>
+      <div class="col-lg-3 col-6 text-center">
+        <span data-purecounter-start="0" data-purecounter-end="42" data-purecounter-duration="1" class="purecounter"></span>
+        <p>Upcoming Events</p>
+      </div>
+      <div class="col-lg-3 col-6 text-center">
+        <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
+        <p>Qualified Tutors</p>
+      </div>
+    </div>
+  </div>
+</section><!-- End Counts Section -->
+
+<!-- ======= Why Us Section ======= -->
+<section id="why-us" class="why-us">
+  <div class="container" data-aos="fade-up">
+    <div class="row">
+      <div class="col-lg-4 d-flex align-items-stretch">
+        <div class="content">
+          <h3>Why Choose Bellatutors?</h3>
+          <p>
+            At Bellatutors, we are committed to providing the best learning experience. Our mission is to help you achieve your educational goals. Here's why you should choose us:
+          </p>
+          <div class="text-center">
+            <a href="#about" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+        <div class="icon-boxes d-flex flex-column justify-content-center">
+          <div class="row">
+            <div class="col-xl-4 d-flex align-items-stretch">
+              <div class="icon-box mt-4 mt-xl-0">
+                <i class="bx bx-receipt"></i>
+                <h4>Wide Range of Subjects</h4>
+                <p>We offer tutoring services in various subjects, from math and science to languages and humanities.</p>
+              </div>
+            </div>
+            <div class="col-xl-4 d-flex align-items-stretch">
+              <div class="icon-box mt-4 mt-xl-0">
+                <i class="bx bx-cube-alt"></i>
+                <h4>Qualified Tutors</h4>
+                <p>Our tutors are highly qualified and experienced professionals dedicated to your success.</p>
+              </div>
+            </div>
+            <div class="col-xl-4 d-flex align-items-stretch">
+              <div class="icon-box mt-4 mt-xl-0">
+                <i class="bx bx-images"></i>
+                <h4>Flexible Scheduling</h4>
+                <p>Schedule tutoring sessions at your convenience, whether it's during the day, evening, or weekends.</p>
+              </div>
+            </div>
+          </div>
+        </div><!-- End .content-->
+      </div>
+    </div>
+  </div>
+</section><!-- End Why Us Section -->
+
+<!-- ======= Features Section ======= -->
+<section id="features" class="features">
+  <div class="container" data-aos="fade-up">
+    <div class="row" data-aos="zoom-in" data-aos-delay="100">
+      <div class="col-lg-3 col-md-4">
+        <div class="icon-box">
+          <i class="ri-store-line" style="color: #ffbb2c;"></i>
+          <h3><a href="#">Personalized Learning</a></h3>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
+        <div class="icon-box">
+          <i class="ri-bar-chart-box-line" style="color: #5578ff;"></i>
+          <h3><a href="#">Interactive Courses</a></h3>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
+        <div class="icon-box">
+          <i class="ri-calendar-todo-line" style="color: #e80368;"></i>
+          <h3><a href="#">Progress Tracking</a></h3>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 mt-4 mt-lg-0">
+        <div class="icon-box">
+          <i class="ri-paint-brush-line" style="color: #e361ff;"></i>
+          <h3><a href="#">Expert Instructors</a></h3>
+        </div>
+      </div>
+      <!-- Add more icon boxes as needed -->
+    </div>
+  </div>
+</section><!-- End Features Section -->
+
+   <!-- ======= Popular Courses Section ======= -->
+<section id="popular-courses" class="courses">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Popular Courses</h2>
+        <p>Explore Our Popular Courses</p>
+      </div>
+      <div class="row" data-aos="zoom-in" data-aos-delay="100">
+  
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+          <div class="course-item">
+            <img src="{% static 'main/assets/img/math.jpg' %}" class="img-fluid" alt="Online Tutoring Course">
+            <div class="course-content">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4>Online Tutoring</h4>
+                <p class="price">$169</p>
+              </div>
+              <h3><a href="course-details.html">Mathematics Tutoring</a></h3>
+              <p>Enhance your math skills with our expert online tutors. Get personalized guidance in mathematics.</p>
+            </div>
+          </div>
+        </div> <!-- End Course Item-->
+  
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+          <div class="course-item">
+            <img src="{% static 'main/assets/img/creative.jpg' %}" class="img-fluid" alt="Writing Course">
+            <div class="course-content">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4>Writing</h4>
+                <p class="price">$250</p>
+              </div>
+              <h3><a href="course-details.html">Creative Writing</a></h3>
+              <p>Unlock your creativity with our writing courses. Learn the art of storytelling and expression.</p>
+            </div>
+          </div>
+        </div> <!-- End Course Item-->
+  
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+          <div class="course-item">
+            <img src="{% static 'main/assets/img/study.jpg' %}" class="img-fluid" alt="Academic Coaching Course">
+            <div class="course-content">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4>Academic Coaching</h4>
+                <p class="price">$180</p>
+              </div>
+              <h3><a href="course-details.html">Study Skills Mastery</a></h3>
+              <p>Excel in your academic journey with our academic coaching. Boost your study skills and achieve success.</p>
+            </div>
+          </div>
+        </div> <!-- End Course Item-->
+  
+      </div>
+    </div>
+  </section><!-- End Popular Courses Section -->
+<!-- ======= Contact Section ======= -->
+<section id="contact" class="contact">
+  <div class="container" data-aos="fade-up">
+    <div class="section-title">
+      <h2>Contact Us</h2>
+      <p>Contact Us</p>
+    </div>
+
+  <div class="container" data-aos="fade-up">
+    <div data-aos="fade-up">
+      <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3163.1154883936865!2d-77.47644852416545!3d37.552342772042245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b113e3319a403d%3A0xa7e44d6fd2b2c5ab!2s2618%20W%20Main%20St%2C%20Richmond%2C%20VA%2023220!5e0!3m2!1sen!2sus!4v1697093001180!5m2!1sen!2sus" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="row mt-5">
+
+      <div class="col-lg-4">
+        <div class="info">
+          <div class="address">
+            <i class="bi bi-geo-alt"></i>
+            <h4>Location:</h4>
+            <p>2618 W Main St, Richmond, Virginia (VA), 23220</p>
+          </div>
+
+          <div class="email">
+            <i class="bi bi-envelope"></i>
+            <h4>Email:</h4>
+            <p>support@bellatutors.com</p>
+          </div>
+
+          <div class="phone">
+            <i class="bi bi-phone"></i>
+            <h4>Call:</h4>
+            <p>+1206421602</p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-lg-8 mt-5 mt-lg-0">
+
+        <form action="#" method="post" role="form" class="php-email-form">
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+            </div>
+            <div class="col-md-6 form-group mt-3 mt-md-0">
+              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+          </div>
+          <div class="form-group mt-3">
+            <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+          </div>
+          <div class="my-3">
+            <div class="loading">Loading</div>
+            <div class="error-message"></div>
+            <div class="sent-message">Your message has been sent. Thank you!</div>
+          </div>
+          <div class="text-center"><button type="submit">Send Message</button></div>
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+</section><!-- End Contact Section -->
+
+  
+  </main><!-- End #main -->
+  {% endblock %}

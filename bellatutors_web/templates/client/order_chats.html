@@ -1,0 +1,109 @@
+<!-- order_chats.html -->
+
+{% extends "client/client_base.html" %}
+{% load tz %}
+{% block content %}
+
+<main id="main" class="main">
+  <section class="section dashboard">
+      <div class="col-12">
+       <div class="card-header">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="row ">
+      <div class="alert text-center alert-{{ message.tags }} alert-dismissible" role="alert" id="messages">
+        {{ message }}
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <i class='fas fa-comments'></i>
+    Chats for {{ order.title }}
+  </div>
+  <div class="card-body">
+
+    <div id="chat-messages">
+      {% for message in chat_messages %}
+      <div class="message {% if message.user.username == request.user.username %}self{% else %}other{% endif %}">
+        <div class="message-content">
+          <div class="user-info">
+            <i class="fas fa-user-circle"></i>
+            <p class="username">{{ message.user.first_name }} {{ message.user.last_name }}</p>
+          </div>
+          <p class="message-text">{{ message.message }}</p>
+          <p class="timestamp">{{ message.created_at }}</p>
+          <div class="action-buttons">
+            {% if message.user == request.user %}
+            <a href="#" class="edit-link" data-message-id="{{ message.pk }}">Edit</a>
+            {% endif %}
+          </div>
+
+          <!-- Edit form -->
+          <form class="edit-form" action="{% url 'edit_chat' message.pk %}" method="POST" style="display: none;">
+            {% csrf_token %}
+            <input type="text" name="edited_message" value="{{ message.message }}" required>
+            <button type="submit">Save</button>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <form class="forms chat-form" action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="text" name="message" placeholder="Type your message" required>
+      <button type="submit">Send</button>
+    </form>
+    <script>
+      function scrollToBottom() {
+        const chatMessages = document.getElementById('chat-messages');
+        const lastMessage = chatMessages.lastElementChild;
+        lastMessage.scrollIntoView();
+      }
+  
+      // Call the scrollToBottom function whenever the page loads
+      window.addEventListener('load', scrollToBottom);
+  
+      // Call the scrollToBottom function whenever a new message is added
+      function addNewMessage() {
+        scrollToBottom();
+      }
+  
+      // Use MutationObserver to detect changes in the chat messages container
+      const chatMessages = document.getElementById('chat-messages');
+      const observer = new MutationObserver(addNewMessage);
+  
+      observer.observe(chatMessages, { childList: true });
+    </script>
+  
+
+    <script>
+      // JavaScript code here
+      document.addEventListener('DOMContentLoaded', function() {
+        // Get all the edit links and attach click event listeners to them
+        const editLinks = document.querySelectorAll('.edit-link');
+        editLinks.forEach(function(link) {
+          link.addEventListener('click', function(event) {
+            event.preventDefault();
+            const messageId = this.getAttribute('data-message-id');
+            const messageContent = document.querySelector(`[data-message-id="${messageId}"]`).closest('.message-content');
+            const messageText = messageContent.querySelector('.message-text');
+            const editForm = messageContent.querySelector('.edit-form');
+
+            // Toggle visibility of message text and edit form
+            messageText.style.display = 'none';
+            editForm.style.display = 'block';
+
+            // Focus on the input field
+            const editedMessageInput = editForm.querySelector('input[name="edited_message"]');
+            editedMessageInput.focus();
+          });
+        });
+      });
+    </script>
+  </div>
+</div>
+</section>
+
+</main><!-- End #main -->
+{% endblock %}

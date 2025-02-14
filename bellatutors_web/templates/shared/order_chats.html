@@ -1,0 +1,141 @@
+{% extends "accounts/base.html" %}
+
+{% block content %}
+<main id="main" class="main">
+<section class="section dashboard">
+<div class="card mb-4">
+    <div class="card-header">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="row ">
+                <div class="alert text-center alert-{{ message.tags }} alert-dismissible" role="alert" id="messages">
+                    {{ message }}
+                </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <i class='fas fa-comments'></i>
+        Chats for {{ order.title }}
+    </div>
+    <div class="card-body">
+
+        <div id="chat-messages">
+            {% for message in chat_messages %}
+              <div class="message {% if message.user.username == request.user.username %}self{% else %}other{% endif %}">
+                <div class="message-content">
+                  <p>{{ message.message }}</p>
+                  <p class="timestamp">{{ message.created_at }}</p>
+                </div>
+                <div class="user-info">
+                  <i class="fas fa-user-circle"></i>
+                  <p class="username">{{ message.user.first_name }} {{ message.user.last_name }}</p>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          
+            <form class="forms" action="" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <input type="text" name="message" placeholder="Type your message" required>
+              <button type="submit">Send</button>
+            </form>
+          
+            <script>
+              function scrollToBottom() {
+                const chatMessages = document.getElementById('chat-messages');
+                const lastMessage = chatMessages.lastElementChild;
+                lastMessage.scrollIntoView();
+              }
+          
+              // Call the scrollToBottom function whenever the page loads
+              window.addEventListener('load', scrollToBottom);
+          
+              // Call the scrollToBottom function whenever a new message is added
+              function addNewMessage() {
+                scrollToBottom();
+              }
+          
+              // Use MutationObserver to detect changes in the chat messages container
+              const chatMessages = document.getElementById('chat-messages');
+              const observer = new MutationObserver(addNewMessage);
+          
+              observer.observe(chatMessages, { childList: true });
+            </script>
+          
+            <style>
+              /* Chat message styles */
+              .message {
+                display: flex;
+                margin-bottom: 10px;
+              }
+          
+              .message-content {
+                background-color: #f1f0f0;
+                padding: 10px;
+                border-radius: 10px;
+                max-width: 70%;
+              }
+          
+              .self .message-content {
+                align-self: flex-end;
+                background-color: #d5f5e3;
+              }
+          
+              .other .message-content {
+                align-self: flex-start;
+              }
+          
+              .user-info {
+                display: flex;
+                align-items: center;
+                margin-left: 10px;
+              }
+          
+              .user-info i {
+                margin-right: 5px;
+              }
+          
+              .username {
+                font-weight: bold;
+                margin: 0;
+                margin-left: auto;
+              }
+          
+              .timestamp {
+                color: #777;
+                font-size: 12px;
+                margin: 0;
+              }
+          
+              /* Form styles */
+              .forms {
+                display: flex;
+                align-items: center;
+                margin-top: 20px;
+              }
+          
+              .forms input[type="text"] {
+                flex: 1;
+                padding: 8px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                font-size: 14px;
+              }
+          
+              .forms button {
+                margin-left: 10px;
+                padding: 8px 16px;
+                background-color: #4CAF50;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                font-size: 14px;
+                cursor: pointer;
+              }
+            </style>
+    </div>
+</div>
+</section>
+
+</main><!-- End #main -->
+{% endblock %}

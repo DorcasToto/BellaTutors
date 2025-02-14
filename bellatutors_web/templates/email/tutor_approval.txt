@@ -1,0 +1,11 @@
+<!-- email/tutor_approval.txt -->
+Hello {{ tutor_name }},
+
+Congratulations! Your account with Bellatutors has been approved.
+
+You can now log in to your account and start using our services.
+
+If you have any questions or need further assistance, please feel free to contact our support team.
+
+Best regards,
+Bellatutors

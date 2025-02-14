@@ -1,0 +1,14 @@
+<form id="timeframe-form" method="POST" action="{% url 'set_timeframe' %}" class="date-range-form">
+    {% csrf_token %}
+    <label for="start_date">From Date:</label>
+    <input type="date" id="start_date" name="start_date" value="{{ start_date }}">
+    <label for="end_date">To Date:</label>
+    <input type="date" id="end_date" name="end_date" value="{{ end_date }}">
+    <button type="submit">Apply</button>
+</form>
+</div><!-- End Page Title -->
+{% if start_date and end_date %}
+<p class="card-texts text-success">
+    Showing data from {{ start_date }} to {{ end_date }}
+</p>
+{% endif %}

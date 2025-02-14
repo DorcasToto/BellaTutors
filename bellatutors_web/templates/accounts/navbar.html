@@ -1,0 +1,23 @@
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+  
+      <h1 class="logo me-auto"><a href="">Bellatutors</a></h1>
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="active" href="{% url 'index' %}">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#popular-courses">Courses</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+      {% if request.user.is_authenticated %}
+      <a href="{% url 'index' %}" class="get-started-btn">{{request.user.username}}</a>
+      {% else %}
+      <a href="{% url 'login' %}" class="get-started-btn">Login</a>
+      {% endif %}
+    </div>
+  </header>
+  <!-- End Header -->
+  

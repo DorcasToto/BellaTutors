@@ -1,0 +1,209 @@
+{% load static %}
+<!-- ======= Header ======= -->
+<header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="{% url 'admin_home' %}" class="logo d-flex align-items-center">
+        <img src="{% static 'assets/img/icon.png' %}" alt="">
+        <span class="d-none d-lg-block">Bellatutors</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+
+        <li class="nav-item dropdown">
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-bell"></i>
+            <span class="badge bg-primary badge-number">{{ notifications.count }}</span>
+          </a>
+        
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+            <li class="dropdown-header">
+              You have {{ notifications.count }} notifications
+              <a href="{% url 'new_notifications_list' %}"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+        
+            {% for notification in notifications %}
+            <li class="notification-item">
+              <a href="{% url 'view_new_notification' notification.id %}" class="notification-link">
+                  {% if notification.type == 'Endpoint' %}
+                      <i class="bi bi-exclamation-circle text-warning"></i>
+                  {% elif notification.type == 'Server' %}
+                      <i class="bi bi-x-circle text-danger"></i>
+                  {% elif notification.type == 'Security' %}
+                      <i class="bi bi-check-circle text-success"></i>
+                  {% elif notification.type == 'System' %}
+                      <i class="bi bi-info-circle text-primary"></i>
+                  {% endif %}
+                  <div>
+                      <h4>{{ notification.type }}</h4>
+                      <p>{{ notification.message }}</p>
+                      <p>{{ notification.created_at|timesince }} ago</p>
+                  </div>
+              </a>
+          </li>
+          
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            {% endfor %}
+        
+            <li class="dropdown-footer">
+              <a href="{% url 'new_notifications_list' %}">Show all notifications</a>
+            </li>
+          </ul>
+        </li>
+        
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-chat-left-text"></i>
+            <span class="badge bg-primary badge-number">{{ admin_new_messages.count }}</span>
+          </a><!-- End Messages Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+            <li class="dropdown-header">
+              You have {{ admin_new_messages.count }} new messages
+              <a href="{% url 'admin_new_messages_list' %}"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            {% for admin_new_message in admin_new_messages %}
+            <li class="message-item">
+              <a href="{% url 'view_admin_new_message' admin_new_message.id %}">
+                <div>
+                  <h4>{{admin_new_message.user.first_name}} {{admin_new_message.user.last_name}}</h4>
+                  <p>{{admin_new_message.message}}</p>
+                  <p>{{ admin_new_message.created_at|timesince }} ago</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            {% endfor %}
+
+            <li class="dropdown-footer">
+              <a href="{% url 'admin_new_messages_list' %}">Show all messages</a>
+            </li>
+
+          </ul><!-- End Messages Dropdown Items -->
+
+        </li><!-- End Messages Nav -->
+
+
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-person-add"></i>
+            <span class="badge bg-primary badge-number">{{ new_users.count }}</span>
+          </a><!-- End Messages Icon -->
+        
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+            <li class="dropdown-header">
+              You have {{ new_users.count }} new users
+              <a href="{% url 'new_users_list' %}"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+        
+            {% for user in new_users %}
+            <li class="message-item">
+              <a href="{% url 'view_new_user' user.id %}">
+                <div>
+                  <h4>{{ user.first_name }} {{ user.last_name }}</h4>
+                  <p>{{ user.date_joined|timesince }} ago</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            {% endfor %}
+        
+            <li class="dropdown-footer">
+              <a href="{% url 'new_users_list' %}">Show all new users</a>
+            </li>
+        
+          </ul>
+        
+        </li><!-- End New users Nav -->
+        
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            {% if request.user.profile_picture %}
+            <img  src="{{ request.user.profile_picture.url }}" alt="Profile" class="rounded-circle">
+            {% else %}
+            <img src="{% static 'assets/img/icon.png' %}" alt="Profile" class="rounded-circle">
+            {% endif %}
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{request.user.username}}</span>
+          </a><!-- End Profile Image Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            {% if request.user.is_authenticated %}
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{% url 'profile' %}">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{% url 'logout' %}">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+            {% else %}
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{% url 'login' %}">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign In</span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{% url 'register' %}">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Up</span>
+              </a>
+            </li>
+            {% endif %}
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->

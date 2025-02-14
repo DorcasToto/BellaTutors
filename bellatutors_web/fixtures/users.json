@@ -1,0 +1,50 @@
+[
+    {
+      "model": "bellatutors_web.user",
+      "pk": 1,
+      "fields": {
+        "username": "admin",
+        "first_name": "Ken",
+        "last_name": "Mattu",
+        "email": "admin@bellatutors.com",
+        "profile_picture": null,
+        "phone": "1234567890",
+        "timezone": "US/Eastern",
+        "groups": [1],
+        "is_superuser": true,
+        "is_staff": true,
+        "password": "pbkdf2_sha256$600000$1wCHJylx7KUCdSCKfH3iQt$km+lEk1UXRnFu0GNrLDRrGl/3AqX90x17c1vg02qCRg="
+      }
+    },
+    {
+      "model": "bellatutors_web.user",
+      "pk": 2,
+      "fields": {
+        "username": "Nick",
+        "first_name": "Nicholas",
+        "last_name": "Ngetich",
+        "email": "ngetichnicholas903@gmail.com",
+        "profile_picture": null,
+        "phone": "9876543210",
+        "timezone": "US/Eastern",
+        "groups": [2],
+        "password": "pbkdf2_sha256$600000$yOL7rJ9CUTgfVPhcCapZ2E$5R/P5qUlZ6kR1Nq72KcLd4IOcjsFBV3KfH7/y6EvTQ8="
+      }
+    },
+    {
+      "model": "bellatutors_web.user",
+      "pk": 3,
+      "fields": {
+        "username": "Denoo",
+        "first_name": "Dennis",
+        "last_name": "Cheruiyot",
+        "email": "kiplangatdennis99@gmail.com ",
+        "profile_picture": null,
+        "phone": "5555555555",
+        "timezone": "US/Eastern",
+        "groups": [3],
+        "password": "pbkdf2_sha256$600000$NcjoZoEsnxI9g7xO81WP9l$1ogBwZsVbDWD03kcrgHr4Kt8zsU98tNGoAb5sFUlHAw="
+      }
+    }
+  ]
+  

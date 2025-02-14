@@ -1,0 +1,46 @@
+{% extends "admin/admin_base.html" %}
+
+{% block content %}
+<main id="main" class="main">
+<section class="section dashboard">
+    <div class="col-12">
+        <div class="card-header">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="row ">
+                    <div class="alert text-center alert-{{ message.tags }} alert-dismissible" role="alert" id="messages">
+                        {{ message }}
+                    </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="card recent-sales overflow-auto">
+            <div class="card-body">
+            <h5 class="card-title">Order Categories</h5>
+            <table class="table table-borderless datatable">
+                <thead>
+                    <tr>
+                    <th>Category</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category in categories %}
+                <tr>
+                    <td>{{ category.name }}</td>
+                    <td><a href="{% url 'update_category' category.id %}" class="btn btn-warning">
+                        Update</a></td>
+                    <td><a href="{% url 'delete_category' category.id %}" class="btn  btn-danger">Delete </a></td>                
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+</section>
+
+</main><!-- End #main -->
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "tutor/tutor_base.html" %}
+
+{% load time_filters %}
+{% block content %}
+<main id="main" class="main">
+    {% include 'shared/timeframe.html' %}
+<section class="section dashboard">
+    <div class="col-12">
+        <div class="card-header">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="row ">
+                    <div class="alert text-center alert-{{ message.tags }} alert-dismissible" role="alert" id="messages">
+                        {{ message }}
+                    </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+    <div class="card-body">
+        <!-- Tutor Dashboard -->
+        <div class="container">
+            <h5 class="card-title">Orders Summary</h5>
+            <div class="row">
+                <!-- available Orders -->
+                <div class="col-md-6 col-lg-3">
+                    <a href="{% url 'tutor_available_orders_list' %}">
+                        <div class="card bg-warning text-white">
+                            <div class="card-body tile">
+                                <i class="bi bi-bag-plus-fill"></i>
+                                <h5 class="card-section-title">Available Orders</h5>
+                                <p class="card-text">{{ available_orders.count }}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- In Progress Orders -->
+                <div class="col-md-6 col-lg-3">
+                    <a href="{% url 'tutor_in_progress_orders_list' %}">
+                        <div class="card bg-info text-white">
+                            <div class="card-body tile">
+                                <i class="bi bi-bag-fill"></i>
+                                <h5 class="card-section-title">In Progress Orders</h5>
+                                <p class="card-text">{{ in_progress_orders.count }}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- Completed Orders -->
+                <div class="col-md-6 col-lg-3">
+                    <a href="{% url 'tutor_completed_orders_list' %}">
+                        <div class="card bg-secondary text-white">
+                            <div class="card-body tile">
+                                <i class="bi bi-bag-check-fill"></i>
+                                <h5 class="card-section-title">Completed Orders</h5>
+                                <p class="card-text">{{ completed_orders.count }}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- Revenue -->
+                <div class="col-md-6 col-lg-3">
+                    <a >
+                        <div class="card bg-success text-white">
+                            <div class="card-body tile">
+                                <i class="bi bi-coin"></i>
+                                <h5 class="card-section-title">Revenue</h5>
+                                <p class="card-text">Ksh{{ revenue }}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+                    </div>
+                </div>
+    </div>
+        </section>
+
+    </main><!-- End #main -->
+{% endblock %}

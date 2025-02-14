@@ -1,0 +1,123 @@
+{% load static %}
+<!-- ======= Header ======= -->
+<header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="{% url 'tutor_home' %}" class="logo d-flex align-items-center">
+        <img src="{% static 'assets/img/icon.png' %}" alt="">
+        <span class="d-none d-lg-block">Bellatutors</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-chat-left-text"></i>
+            <span class="badge bg-primary badge-number">{{ tutor_new_messages.count }}</span>
+          </a><!-- End Messages Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+            <li class="dropdown-header">
+              You have {{ tutor_new_messages.count }} new messages
+              <a href="{% url 'tutor_new_messages_list' %}"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            {% for tutor_new_message in tutor_new_messages %}
+            <li class="message-item">
+              <a href="{% url 'view_tutor_new_message' tutor_new_message.id %}">
+                <div>
+                  <h4>{{tutor_new_message.user.first_name}} {{tutor_new_message.user.last_name}}</h4>
+                  <p>{{tutor_new_message.message}}</p>
+                  <p>{{ tutor_new_message.created_at|timesince }} ago</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            {% endfor %}
+
+            <li class="dropdown-footer">
+              <a href="{% url 'tutor_new_messages_list' %}">Show all messages</a>
+            </li>
+
+          </ul><!-- End Messages Dropdown Items -->
+
+        </li><!-- End Messages Nav -->
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            {% if request.user.profile_picture %}
+            <img  src="{{ request.user.profile_picture.url }}" alt="Profile" class="rounded-circle">
+            {% else %}
+            <img src="{% static 'assets/img/icon.png' %}" alt="Profile" class="rounded-circle">
+            {% endif %}
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{request.user.username}}</span>
+          </a><!-- End Profile Image Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            {% if request.user.is_authenticated %}
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{% url 'profile' %}">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{% url 'logout' %}">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+            {% else %}
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{% url 'login' %}">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign In</span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{% url 'register' %}">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Up</span>
+              </a>
+            </li>
+            {% endif %}
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->

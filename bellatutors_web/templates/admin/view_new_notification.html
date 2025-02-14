@@ -1,0 +1,30 @@
+{% extends "admin/admin_base.html" %}
+
+{% block content %}
+<main id="main" class="main">
+    <section class="section notification-details">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Notification Details</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="notification-details">
+                                <h4>{{ notification.type }}</h4>
+                                <p>{{ notification.message }}</p>
+                                <p>Created At: {{ notification.created_at }}</p>
+                                <!-- Add more details as needed -->
+                            </div>
+                            <div class="text-end mt-3">
+                                <a href="{% url 'new_notifications_list' %}" class="btn btn-secondary">Back to Notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main><!-- End #main -->
+{% endblock %}

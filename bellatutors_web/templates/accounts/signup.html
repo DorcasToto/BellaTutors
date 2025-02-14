@@ -1,0 +1,49 @@
+{% extends "accounts/base.html" %}
+{% load bootstrap4 %}
+{% block content %}
+<section>
+<div class="container" style="margin-top: 50px;">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h3 class="text-center text-success">Sing Up</h3>
+            {% if form.errors %}
+            <p> Some Information Might be Incorrect </p>
+            {% endif %}
+            <hr>
+            <form class="forms" action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% bootstrap_form signup_form %}
+                <input type="hidden" id="timezone-offset" name="timezone_offset" value="">
+                <div class="form-group mt-4">
+                    <div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </div>
+                    <input type="hidden" name="next" value="{{next}}">
+                    <p>Already have an account? <a href="{% url 'login' %}"> Login</a></p>          
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+  <script>
+    // Retrieve the user's timezone offset
+    var timezoneOffset = new Date().getTimezoneOffset();
+
+    // Convert the timezone offset to minutes
+    var timezoneOffsetMinutes = -timezoneOffset;
+
+    // Set the value of the hidden field
+    document.getElementById('timezone-offset').value = timezoneOffsetMinutes;
+  </script>
+{% endblock %}
+<script>
+    // Retrieve the user's timezone offset
+    var timezoneOffset = new Date().getTimezoneOffset();
+
+    // Convert the timezone offset to minutes
+    var timezoneOffsetMinutes = -timezoneOffset;
+
+    // Set the value of the hidden field
+    document.getElementById('timezone-offset').value = timezoneOffsetMinutes;
+  </script>
+</section>
