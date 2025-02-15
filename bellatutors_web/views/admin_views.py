@@ -2,8 +2,6 @@ from django.http import HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 import requests
-from api.models import Ticket
-
 from bellatutors_web.decorators import admin_only, allowed_users
 from bellatutors_web.email import  send_created_order_email, send_new_chat_email, send_order_approval_email, send_tutor_approval_email
 from bellatutors_web.views.shared_views import get_date_range_from_session_or_default

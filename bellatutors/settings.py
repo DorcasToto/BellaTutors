@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bellatutors_web',
-    'api',
     'bootstrap4',
     'corsheaders',
     'rest_framework',
@@ -136,13 +135,21 @@ LOGGING = {
 
 EMAIL_USE_SSL = False
 EMAIL_USE_TLS=True
-EMAIL_HOST=""
+EMAIL_HOST="mail.bellatutors.com"
 EMAIL_PORT=587
-EMAIL_HOST_USER=""
-EMAIL_HOST_PASSWORD=""
+EMAIL_HOST_USER="test@bellatutors.com"
+EMAIL_HOST_PASSWORD="vedeTsxaEJKR"
 
-DEFAULT_FROM_EMAIL = ''
+
+DEFAULT_FROM_EMAIL = "test@bellatutors.com"
 EMAIL_SENDER_NAME = 'Bellatutors'
+
+# EMAIL_USE_SSL = False
+# EMAIL_USE_TLS=True
+# EMAIL_HOST="mail.bellatutors.com"
+# EMAIL_PORT=587
+# EMAIL_HOST_USER="test@bellatutors.com"
+# EMAIL_HOST_PASSWORD="vedeTsxaEJKR"
 
 
 # Password validation
@@ -210,3 +217,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #         # Define your desired permission classes
 #     ),
 # }
+
